@@ -2,7 +2,9 @@
 # Project Name
 Black_Friday_data_analysis (https://datahack.analyticsvidhya.com/contest/black-friday/)
 
+
 #### -- Project Status: [Completed]
+abdullahalhoothy/Black_Friday_data_analysis/Model.ipynb
 
 ## Project Intro/Objective
 
@@ -34,6 +36,7 @@ As first step i started to analyze the problem and made sure that numbers or cat
 Then did some exploratory analysis, to find missing values and outliers there was a lot of data and i realized that it’s relatively clean with no outliers.only a some columns had missing values.
 I then did some Descriptive analysis and then began with linear model and moved to DecisionTreeRegressor and currently doing XGboost and random forests. 
 DecisionTreeRegressor was much better the linear models by a big margin possible because of the many different ordinal categories 
+
 
 ## Needs of this project
 
