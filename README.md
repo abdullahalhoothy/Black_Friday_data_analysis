@@ -19,9 +19,11 @@ The Features included things like age, gender, marital status, categories of pro
 * XGboost
 * Random Forests
 
-### Technologies
+### Technologies/packages
 * Python
 * Pandas, jupyter
+* Scikit-learn
+* Seaborn
 
 
 ## Project Description
