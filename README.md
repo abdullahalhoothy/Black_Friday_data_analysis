@@ -47,9 +47,12 @@ DecisionTreeRegressor was much better the linear models by a big margin possible
 
 ## Exploring the training Data
 The data has 55008 enteries with the following features:(User ID, Age, City Category, Gender, Martial status, Occupation, Product ID, Purchase, Stay In Current city Years, Product Category1,2&3).
--User ID is a customer ID.
--Occupations are masked.
--Martial Status is 1=married,0=single.
+- User ID is a customer ID.
+- Occupations are masked.
+- Martial Status is 1=married,0=single.
+
+![](black%20friday/IMAGES/Visualized%20data.png)
 
 
+One thing that is surpising to me is that the sample is 71.2% Male buyers, however many of the market research I've read have stated that as much as 80% of consumers are women.
 
