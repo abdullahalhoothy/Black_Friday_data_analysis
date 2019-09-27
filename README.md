@@ -3,7 +3,7 @@
 Black_Friday_data_analysis (https://datahack.analyticsvidhya.com/contest/black-friday/)
 
 
-#### -- Project Status: [Completed]
+#### -- Project Status: [Completed][Polishing]
 abdullahalhoothy/Black_Friday_data_analysis/Model.ipynb
 
 ## Project Intro/Objective
