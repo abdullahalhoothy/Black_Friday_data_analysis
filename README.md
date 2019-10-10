@@ -4,12 +4,13 @@ Black_Friday_data_analysis (https://datahack.analyticsvidhya.com/contest/black-f
 
 
 #### -- Project Status: [Completed][Polishing]
-abdullahalhoothy/Black_Friday_data_analysis/Model.ipynb
+https://github.com/abdullahalhoothy/Black_Friday_data_analysis/blob/master/black%20friday/Model.ipynb
 
 ## Project Intro/Objective
+A retail company “ABC Private Limited” wants to understand the customer purchase behaviour (specifically, purchase amount) against various products of different categories. They have shared purchase summary of various customers for selected high volume products from last month. 
+The purpose of this project is to build a machine learning model that predicts sale revenue and the features which effect it most. This will help the company create personalized offers for customers for products that the customer may like.  
+The Features included: age, gender, marital status, categories of products purchased.
 
-The purpose of this project is to build a machine learning model that predicts sale revenue and the main features which effect it most. which will help them to create personalized offer for customers against different products.  
-The Features included things like age, gender, marital status, categories of products purchased.A retail company “ABC Private Limited” wants to understand the customer purchase behaviour (specifically, purchase amount) against various products of different categories. They have shared purchase summary of various customers for selected high volume products from last month. 
 
 ### Methods Used
 * exploratory analysis
