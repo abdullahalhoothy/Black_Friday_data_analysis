@@ -52,8 +52,50 @@ The data has 55008 enteries with the following features:(User ID, Age, City Cate
 - Occupations are masked.
 - Martial Status is 1=married,0=single.
 
+Data columns (total 12 columns):
+User_ID                       550068 non-null int64
+Product_ID                    550068 non-null object
+Gender                        550068 non-null object
+Age                           550068 non-null object
+Occupation                    550068 non-null int64
+City_Category                 550068 non-null object
+Stay_In_Current_City_Years    550068 non-null object
+Marital_Status                550068 non-null int64
+Product_Category_1            550068 non-null int64
+Product_Category_2            376430 non-null float64
+Product_Category_3            166821 non-null float64
+Purchase                      550068 non-null int64
+
 ![](black%20friday/IMAGES/Visualized%20data.png)
 
 
 One thing that is surpising to me is that the sample is 71.2% Male buyers, however many of the market research I've read have stated that as much as 80% of consumers are women.
+
+
+# understanding how many unique values i have
+for col_name in train.columns:
+    print(col_name, len(train[col_name].unique()))
+User_ID 5891
+Product_ID 3631
+Gender 2
+Age 7
+Occupation 21
+City_Category 3
+Stay_In_Current_City_Years 5
+Marital_Status 2
+Product_Category_1 20
+Product_Category_2 18
+Product_Category_3 16
+Purchase 18105
+
+
+# getting the values of every unique entry from the following possible features 
+for col_name in ['Gender', 'Age', 'Occupation', 'City_Category','Stay_In_Current_City_Years','Marital_Status']:
+    print(sorted(train[col_name].unique()))
+['F', 'M']
+['0-17', '18-25', '26-35', '36-45', '46-50', '51-55', '55+']
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+['A', 'B', 'C']
+['0', '1', '2', '3', '4+']
+[0, 1]
 
