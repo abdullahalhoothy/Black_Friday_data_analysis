@@ -2,7 +2,7 @@
 Black_Friday_data_analysis (https://datahack.analyticsvidhya.com/contest/black-friday/)
 
 #### -- Project Status: [Completed]
-https://github.com/abdullahalhoothy/Black_Friday_data_analysis/blob/master/black%20friday/Model.ipynb
+https://github.com/abdullahalhoothy/Black_Friday_data_analysis/blob/master/black%20friday/Model%20(1).ipynb
 
 # Black Friday Sales- Analysis and Prediction
 One of the most important applications of machine learning in the retail sector is the prediction of the amount that a person is willing to spend at a store. Such predictions become important because they help the store owners to plan their finances, marketing strategies and inventory.
