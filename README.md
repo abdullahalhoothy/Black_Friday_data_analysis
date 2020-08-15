@@ -290,9 +290,8 @@ dfoccu.sort_index().plot(kind='barh', ax=axes[4,2], title='Occupation Purchase B
 dfstay.sort_values(ascending=False).plot(kind='barh', ax=axes[5,2], title='Stay_In_Current_City_Years Purchase Billions$')
 
 ```
-![]()
-[Insert screenshot of code for creating bar graphs and all the graphs, 
-Fig Name: Visualising the data]
+![barcharts](https://github.com/abdullahalhoothy/Black_Friday_data_analysis/blob/master/black%20friday/IMAGES/thebarcharts.PNG)
+
 
 The observations are as discussed below:
 ##### i.	Gender
@@ -329,9 +328,7 @@ train_nooutliers=train.drop(index=oil,axis=0)
 #ploting outliers, if they are very far rom the max range then we might need to discard them 
 boxplot = train.boxplot(column='Purchase')
 ```
-![]()
-[Insert the code for creating boxplot and the image of the boxplot, 
-Fig name: Detecting Outliers]
+![BoxPlot](https://github.com/abdullahalhoothy/Black_Friday_data_analysis/blob/master/black%20friday/IMAGES/boxplot.PNG)
 
 ### 4.	Pre-Processing
 
@@ -347,8 +344,6 @@ train['Product_Category_3']=train['Product_Category_3'].fillna(0).astype("int64"
 test['Product_Category_2']=test['Product_Category_2'].fillna(0).astype("int64")
 test['Product_Category_3']=test['Product_Category_3'].fillna(0).astype("int64")
 ```
-[Insert screenshot of the code where you have filled null values with zero in product category 2 and 3, 
-Figure name: Filling the null values]
 
 ##### Data Manipulation
 It is important to encode all the categorical variables for better model accuracy and I have used label encoder for encoding the following variables in both, the train and the test dataset:
@@ -436,9 +431,8 @@ display(corr)
 sns.heatmap(corr, xticklabels=corr.columns, yticklabels=corr.columns, cmap='RdBu')
 ```
 
-![]()
-[Add code for creating correlation matric and heat map and the images of both,
-Figure name: correlation matrix and heat map]
+![heatmap](https://github.com/abdullahalhoothy/Black_Friday_data_analysis/blob/master/black%20friday/IMAGES/correlation.PNG)
+
 
 ##### 5.	Model Building
 
@@ -495,19 +489,12 @@ except:
 model.fit(predictorsdata,train['Purchase'])
 ```
 
-
-
-
     LinearRegression(copy_X=True, fit_intercept=True, n_jobs=None, normalize=False)
-
-
 
 
 ```python
 predictorsdata.shape
 ```
-
-
 
 
     (550068, 12)
@@ -609,8 +596,7 @@ coef1.plot(kind='bar', title='Model Coefficients')
     RMSE : 4625
     CV Score : Mean - 4628 | Std - 33.74 | Min - 4555 | Max - 4684
     
-![]()
-[Add screenshot of the code for building linear regression model and the model report with the graph of the model coefficients, Figure name: Linear Regression model]
+![](https://github.com/abdullahalhoothy/Black_Friday_data_analysis/blob/master/black%20friday/IMAGES/linear.PNG)
 
 #### Decision Tree Regressor Model
 I have further built a decision tree model by again removing the id’s, target variable and product category 2 using the function modelfit and obtained the following results
@@ -635,9 +621,7 @@ coef4.plot(kind='bar', title='Feature Importances')
     RMSE : 2983
     CV Score : Mean - 2998 | Std - 20.42 | Min - 2959 | Max - 3034
     
-![]()
-[Add screenshot of the code for building decision tree model and the model report with the graph of the feature importance, 
-Figure name: Decision Tree Regressor model]
+![](https://github.com/abdullahalhoothy/Black_Friday_data_analysis/blob/master/black%20friday/IMAGES/Decisiontree.PNG)
 
 #### XGB Regressor Model
 The last model that I have built is the XGB Regressor Model by importing XGBRegressor package form the library xgboost.
@@ -675,9 +659,6 @@ print("RMSE : %.4g" % np.sqrt(metrics.mean_squared_error((train[target]).values,
     [16:01:02] WARNING: /workspace/src/objective/regression_obj.cu:152: reg:linear is now deprecated in favor of reg:squarederror.
     Mean Absolute Error : 220.69855398121658
     RMSE : 2965
-![]()
-[Add screenshot of the code for building xgb model and the model report, 
-Figure name: XGB Regressor model]
 
 
 ## Summing Up
