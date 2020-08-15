@@ -15,28 +15,168 @@ b.	MatplotLib and Seaborn for plotting visuals like graphs and distributions.
 c.	SciPy for various statistical operations.
 d.	Sklearn for model building
 
-[Insert importing libraries code screenshot here
-Fig name: Required Libraries]
+```Python
+#importing important libraries 
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+import sklearn as skl
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_selection import SelectFromModel
+from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error, r2_score, mean_absolute_error
+import seaborn as sns
+```
 
 #### 2.	Importing the Dataset
 I have imported the dataset which I had stored in my drive and the path of which has been mentioned.
 Kaggle has already divided the dataset into train and test data and I have thus stored them in the respective dataframes.
+```Python
+train = pd.read_csv(locationpath+"/train.csv")
+test = pd.read_csv(locationpath+"/test.csv")
 
-[Insert code screenshots for importing the dataset and storing them in variables test and train, 
-Fig name: Importing and reading the dataset]
+```
 
 #### 3.	Data Exploration
 
 Checking the Structure of Data
 The train data has a total of 10 independent variables and 1 dependent variable, which is purchase and a total of 550068 entries. 
 It further has a total of 5 integer variables, 2 float variables and 5 categorical variables and a huge number of null values in product categories 2 and 3.
+```Python
+# some information on data
+train.info()
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 550068 entries, 0 to 550067
+Data columns (total 12 columns):
+ #   Column                      Non-Null Count   Dtype  
+---  ------                      --------------   -----  
+ 0   User_ID                     550068 non-null  int64  
+ 1   Product_ID                  550068 non-null  object 
+ 2   Gender                      550068 non-null  object 
+ 3   Age                         550068 non-null  object 
+ 4   Occupation                  550068 non-null  int64  
+ 5   City_Category               550068 non-null  object 
+ 6   Stay_In_Current_City_Years  550068 non-null  object 
+ 7   Marital_Status              550068 non-null  int64  
+ 8   Product_Category_1          550068 non-null  int64  
+ 9   Product_Category_2          376430 non-null  float64
+ 10  Product_Category_3          166821 non-null  float64
+ 11  Purchase                    550068 non-null  int64  
+dtypes: float64(2), int64(5), object(5)
+memory usage: 50.4+ MB
 
-[Insert screenshot of code train.info() and its output here, 
-Fig name: Structure of the data]
+```
 
 Checking the Head of Data
 We can see that there are a total of 9 categorical variables in the dataset, which are user ID, product ID, gender, occupation (coded in numerical values), city category, marital status (again coded as 0 and 1), product categories - 1,2 and 3 and age (in various ranges).
 We can also see symbols like (+) in the columns age and stay_in _current_city_years, which have to be taken care of before running the algorithms.
+```Python
+train.head()
+```
+
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>User_ID</th>
+      <th>Product_ID</th>
+      <th>Gender</th>
+      <th>Age</th>
+      <th>Occupation</th>
+      <th>City_Category</th>
+      <th>Stay_In_Current_City_Years</th>
+      <th>Marital_Status</th>
+      <th>Product_Category_1</th>
+      <th>Product_Category_2</th>
+      <th>Product_Category_3</th>
+      <th>Purchase</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1000001</td>
+      <td>P00069042</td>
+      <td>F</td>
+      <td>0-17</td>
+      <td>10</td>
+      <td>A</td>
+      <td>2</td>
+      <td>0</td>
+      <td>3</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>8370</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1000001</td>
+      <td>P00248942</td>
+      <td>F</td>
+      <td>0-17</td>
+      <td>10</td>
+      <td>A</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>6.0</td>
+      <td>14.0</td>
+      <td>15200</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1000001</td>
+      <td>P00087842</td>
+      <td>F</td>
+      <td>0-17</td>
+      <td>10</td>
+      <td>A</td>
+      <td>2</td>
+      <td>0</td>
+      <td>12</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1422</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1000001</td>
+      <td>P00085442</td>
+      <td>F</td>
+      <td>0-17</td>
+      <td>10</td>
+      <td>A</td>
+      <td>2</td>
+      <td>0</td>
+      <td>12</td>
+      <td>14.0</td>
+      <td>NaN</td>
+      <td>1057</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1000002</td>
+      <td>P00285442</td>
+      <td>M</td>
+      <td>55+</td>
+      <td>16</td>
+      <td>C</td>
+      <td>4+</td>
+      <td>0</td>
+      <td>8</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7969</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+
+
 
 [Insert the screenshot of code train.head() and its output, 
 Fig name: head of the data]
@@ -45,6 +185,9 @@ Checking the Total Number of Unique Values in the Train Data
 It can be seen that there are a large number of categories for all the variables except gender, city category and marital status, which have 2, 3 and 2 categories respectively.
 Also, after removing all the duplicate user ID’s, we can see that all the unique users have consistent information in all the entries except product category 2 and 3 which comprise of missing values.
 
+```Python
+
+```
 [Insert screenshot of:
 1.	code for checking unique values and its output, 
 2.	code for getting the values of every unique entry from the following possible features and its output
@@ -58,7 +201,10 @@ I have plotted bar graphs for all the variables in the dataset to understand the
 a.	Count of the total entries,
 b.	Unique user count for all the variables, and
 c.	Grouping each unique group for summing the purchase amount using the groupby function.
+```Python
 
+```
+![]()
 [Insert screenshot of code for creating bar graphs and all the graphs, 
 Fig Name: Visualising the data]
 
@@ -84,7 +230,10 @@ This column represents the total period of stay of a customer in the current cit
 ##### Outliers
 Outliers are observations that lie at an abnormal distance from other values in the data. It is important to treat outliers because their presence in the data can lead to biased results.
 I have plotted a boxplot for detecting the outliers in the purchase variable. We can see the outliers are present in this variable and I might discard them later if they are very far from the maximum range.
+```Python
 
+```
+![]()
 [Insert the code for creating boxplot and the image of the boxplot, 
 Fig name: Detecting Outliers]
 
@@ -95,6 +244,9 @@ There are a large number of null values in the columns product category 2 and pr
 a.	Errors while model building and 
 b.	Bias by filling them with existing values.
 Another reason for filling in this value was that it did not impact the accuracy of the model.
+```Python
+
+```
 [Insert screenshot of the code where you have filled null values with zero in product category 2 and 3, 
 Figure name: Filling the null values]
 
@@ -119,7 +271,9 @@ Encoded city category A as 0, category B as 1 and category C as 2.
 
 d.	Stay in Current City Years
 I have used one-hot encoding for this variable and converted it to dummies where the categories are 0 and 1.
+```Python
 
+```
 [Add codes for:
 1.	Turn gender into binary for training data set
 2.	Giving Age groups Numerical values for training data set
@@ -135,7 +289,10 @@ Fig Name: Encoding the data]
 Correlation Matrix and Heat Map
 Correlation matrices and heat maps are used to understand the correlation of different variables with the target variable. 
 For the correlation matrix and heat map generated for this dataset, some variables show a positive while others show a negative correlation with the target variable, purchase but the correlation with any of the variables is not very strong.
+```Python
 
+```
+![]()
 [Add code for creating correlation matric and heat map and the images of both,
 Figure name: correlation matrix and heat map]
 
@@ -147,15 +304,20 @@ I have then defined a function, modelfit which allows to fit the algorithm on th
 This function also allows to perform cross-validation and then print the final root mean square error (RMSE) and cross-validation (CV) score.
 After training the algorithm by building a model for the train data, the same algorithm is applied to test data and the obtained results are stored in the path that I have specified. 
 You can modify your storage path as required.
+```Python
 
+```
 [Add screenshot of code for model coding (whole cell), 
 Figure name: model coding]
 
 ##### Verbatum Model
 Here, I have created 2 dataframes from the train and test data respectively by removing the variables product id and user id because ID’s are not required in final model building as they are assumed to have no effect on the target variable and purchase from the training data because it is the target variable.
 I have checked the dimensions and head of the new dataframes further.
+```Python
 
+```
 [Add screenshots of all the codes from cell number 61 to 69 in your Github repository, 
+![]()
 Figure name: Verbatum model]
 
 #### Linear Regression Model
@@ -164,6 +326,10 @@ a.	RMSE score of 4625,
 b.	CV scores as:
 Mean - 4628 | Std - 33.74 | Min - 4555 | Max – 4684, which are the scores of mean value, standard deviation, minimum value and the maximum value, and 
 c.	A graph which depicts the linear regression coefficients in ascending order of their values.
+```Python
+
+```
+![]()
 [Add screenshot of the code for building linear regression model and the model report with the graph of the model coefficients, Figure name: Linear Regression model]
 
 #### Decision Tree Regressor Model
@@ -173,13 +339,20 @@ b.	CV scores as:
 CV Score : Mean - 2998 | Std - 20.42 | Min - 2959 | Max – 3034 
 And it can be seen that the standard deviation has improved considerably compared to linear regression model
 c.	A bar graph that shows feature importance and as per this graph, product category 1 has the highest impact on the purchase amount.
+```Python
 
+```
+![]()
 [Add screenshot of the code for building decision tree model and the model report with the graph of the feature importance, 
 Figure name: Decision Tree Regressor model]
 
 #### XGB Regressor Model
 The last model that I have built is the XGB Regressor Model by importing XGBRegressor package form the library xgboost.
 This model gives the mean absolute error of 220.69 and RMSE score of 2965 which is more than that of the tree model. 
+```Python
+
+```
+![]()
 [Add screenshot of the code for building xgb model and the model report, 
 Figure name: XGB Regressor model]
 
